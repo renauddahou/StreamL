@@ -15,6 +15,11 @@ import plotly.express as px
 from PIL import Image
 import streamlit.components.v1 as components
 
+import subprocess
+subprocess.Popen("chown www-data data.db", shell=True)
+subprocess.Popen("chmod 777 data.db", shell=True)
+
+
 @st.cache
 def to_excel(df):
     output = BytesIO()
