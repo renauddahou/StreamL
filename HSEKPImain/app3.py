@@ -542,8 +542,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_TBM1['Date']),key=0)
-                                maxy= st.date_input('MaxDate',max(df_TBM1['Date']),key=1)
+                                miny= st.date_input('MinDate',min(df_TBM1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_TBM1['Date']))
                             except:
                                 st.error("Nous ne pouvons afficher, car vous n'avez pas au moins deux dates enregistrées.")
                                 st.stop()
