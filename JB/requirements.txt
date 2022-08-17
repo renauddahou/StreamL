@@ -5,3 +5,4 @@ streamlit-tags>=1.2.8
 streamlit-webscrap-tool>=0.0.3
 Flask>=1.1.1
 nltk>=3.7
+docx2txt>=0.8
