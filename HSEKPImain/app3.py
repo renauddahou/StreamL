@@ -289,7 +289,7 @@ def main():
 		<center><img src="https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G"  alt="HSEBOT" height="150" width="200"></center>
 		"""
         
-        col1, col2, col3 = st.beta_columns([1,10,1])
+        col1, col2, col3 = st.columns([1,10,1])
         with col2:
             st.markdown(image_BOT, unsafe_allow_html = True)	
             #st.image("https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G",width=400,)
@@ -337,7 +337,7 @@ def main():
                     choix = st.selectbox("", ["AJOUTER", "AFFICHER", "METTRE À JOUR", "SUPPRIMER"])
                     if choix == "AJOUTER":
                         st.subheader("AJOUTER DES DONNÉES")
-                        col1, col2= st.beta_columns(2)
+                        col1, col2= st.columns(2)
                         with col1:
                             st.subheader("CIBLE A ENREGISTRER")
                             
@@ -1094,7 +1094,7 @@ def main():
                                 NArrivant = name_result[0][3]
                                 Ninduction = name_result[0][4]
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1171,7 +1171,7 @@ def main():
                                 NChantier = name_result[0][3]
                                 NTBM = name_result[0][4]
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1244,7 +1244,7 @@ def main():
                                 NCC = name_result[0][5]
                                 FNCC = name_result[0][6]
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1314,7 +1314,7 @@ def main():
                                 NCHC = name_result[0][5]
                                 FNCHC = name_result[0][6]
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1383,7 +1383,7 @@ def main():
                                 NAC = name_result[0][5]
                                 FNAC = name_result[0][6]
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1450,7 +1450,7 @@ def main():
                                 NJSA = name_result[0][4]
                                
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1520,7 +1520,7 @@ def main():
                                 NJP = name_result[0][7]
                                
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1592,7 +1592,7 @@ def main():
                                 IE = name_result[0][8]
                                
                                 
-                                col1, col2= st.beta_columns(2)
+                                col1, col2= st.columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -2159,7 +2159,7 @@ def main():
             ####fin
             st.success("Votre compte a été créé avec succès")
             st.info("Allez au menu de connexion pour vous connecter")
-        col1, col2, col3 = st.beta_columns([1,6,1])
+        col1, col2, col3 = st.columns([1,6,1])
         with col2:
             st.image("http://cabinetnpm.com/wp-content/uploads/2020/02/t%C3%A9l%C3%A9chargement.png",width=200,)
 
