@@ -16,10 +16,7 @@ from PIL import Image
 import streamlit.components.v1 as components
 
 
-#imglog = Image.open('logo.jpg')
-#st.set_page_config(page_title='HSEbot-KPI', page_icon=imglog, initial_sidebar_state='expanded', layout='wide')#  layout="wide"
-
-
+#===================================================
 
 
 @st.cache(allow_output_mutation=True)
@@ -273,7 +270,7 @@ def main():
 			""")
         html_temp = """
 		<div style="background-color:#464e5f;padding:10px;border-radius:10px;margin:3px;">
-		<h1 style="font-family: 'BadaBoom BB', sans-serif;color:white;text-align:center;"><b>HSE KPI RECORDER</b></h1>
+		<h1 style="font-family: 'BadaBoom BB', sans-serif;color:white;text-align:center;"><b>HSE KPI RECORDER & HSEbot</b></h1>
 		</div>
 		"""
 	
@@ -284,7 +281,7 @@ def main():
         st.markdown("✨ **Vous pouvez aussi téléchager vos données selon des intervalles de date.**")
         #st.markdown("✨ **HSEbot vous permet de discuter de manière inter-active avec une intelligence artificielle qui vous donne des conseils de prévention sur les risques au chantier.**")
         
-        col1, col2, col3 = st.columns([1,10,1])
+        col1, col2, col3 = st.beta_columns([1,10,1])
 	
 
     elif choice == "Connexion":
@@ -308,7 +305,7 @@ def main():
                     
                     image_temp ="""
                     <div style="background-color:#464e5f;padding:10px;border-radius:5px;margin:10px;">
-		    <img src="https://avatars.githubusercontent.com/u/85571576?v=4" alt="Avatar" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
+		    <img src="https://1tpecash.fr/wp-content/uploads/elementor/thumbs/Renaud-Louis-osf6t5lcki4q31uzfafpi9yx3zp4rrq7je8tj6p938.png" alt="Avatar" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
 		    <br/>
 		    <p style="color:white;text-align:justify">Bienvenue ! Je vous souhaite une bonne expérience, ce travail est le fruit de mes expériences en tant que Manager HSE et Data scientist vos avis à propos sont les bienvenues.</p>
 		    </div>
@@ -325,7 +322,7 @@ def main():
                     choix = st.selectbox("", ["AJOUTER", "AFFICHER", "METTRE À JOUR", "SUPPRIMER"])
                     if choix == "AJOUTER":
                         st.subheader("AJOUTER DES DONNÉES")
-                        col1, col2= st.columns(2)
+                        col1, col2= st.beta_columns(2)
                         with col1:
                             st.subheader("CIBLE A ENREGISTRER")
                             
@@ -455,7 +452,7 @@ def main():
                     elif choix == "AFFICHER":
                         st.subheader("AFFICHEZ VOS DONNÉES")
                         st.warning("Si vous faites des enregistrements à une date antérieure à celle de votre inscription veuillez spécifier l'intervalle de date, car l'affichage des données est par défaut à partir de votre jour d'inscription.")
-                        ACCUEIL_exp= st.expander("ACCUEIL SECURITÉ")
+                        ACCUEIL_exp= st.beta_expander("ACCUEIL SECURITÉ")
                         with ACCUEIL_exp:
                             df_Accueil = pd.DataFrame(view_Accueil(), columns=["id","IDD","Chantier","Nbre_Arrivant","Nbre_induction","Date"])
 
@@ -479,7 +476,7 @@ def main():
                             df_Accueil1.sort_values(by=['Date'], inplace=True)
 
                             #intervalle de date
-                            st.write('SELECTIONNEZ UNE INTERVALLE DE DATE POUR VOTRE GRILLE')
+                            st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
                                 miny= st.date_input('MinDate',min(df_Accueil1['Date']))
                                 maxy= st.date_input('MaxDate',max(df_Accueil1['Date']))
@@ -498,7 +495,7 @@ def main():
                             st.dataframe(df_filter1)
                             st.text("*Nbre_Arrivant: Nombre d'arrivant\n*Nbre_induction: Nombre d'induction")
 
-                            if st.button("Télécharger",key=10):
+                            if st.button("Télécharger",key=0):
                                 st.markdown(get_table_download_link(df_filter1), unsafe_allow_html=True)
                             #figure
                             df_filter1['Nbre_Arrivant'] = pd.to_numeric(df_filter1['Nbre_Arrivant'])
@@ -517,7 +514,7 @@ def main():
                             st.plotly_chart(fig, use_container_width=True)
 
 
-                        BRIEFING_exp= st.expander("BRIEFING DE SÉCURITÉ( TBM)")
+                        BRIEFING_exp= st.beta_expander("BRIEFING DE SÉCURITÉ( TBM)")
                         with BRIEFING_exp:
                             #TMB
                             df_TBM = pd.DataFrame(view_TBM(), columns=["id","IDD","Chantier","Nbre_chantier","Nbre_TBM","Date"])
@@ -542,8 +539,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_TBM1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_TBM1['Date']))
+                                miny= st.date_input('MinDate',min(df_TBM1['Date']),key=0)
+                                maxy= st.date_input('MaxDate',max(df_TBM1['Date']),key=0)
                             except:
                                 st.error("Nous ne pouvons afficher, car vous n'avez pas au moins deux dates enregistrées.")
                                 st.stop()
@@ -558,7 +555,7 @@ def main():
                             st.dataframe(df_filter2)
                             st.text("*Nbre_chantier: Nombre de chantier\n*Nbre_TBM: Nombre de TBM")
 
-                            if st.button("Télécharger", key=11):
+                            if st.button("Télécharger", key=1):
                                 st.markdown(get_table_download_link(df_filter2), unsafe_allow_html=True)
                             #figure
                             df_filter2['Nbre_chantier'] = pd.to_numeric(df_filter2['Nbre_chantier'])
@@ -577,7 +574,7 @@ def main():
                             st.plotly_chart(figTBM, use_container_width=True)
 
 
-                        CONFORMITÉ_exp= st.expander("NON CONFORMITÉ")
+                        CONFORMITÉ_exp= st.beta_expander("NON CONFORMITÉ")
                         with CONFORMITÉ_exp:
                             #NON CONFORMITÉ
                             df_NC = pd.DataFrame(view_NC(), columns=["id","IDD","Chantier","NCR","FNCR","NCC","FNCC","Date"])
@@ -602,8 +599,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_NC1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_NC1['Date']))
+                                miny= st.date_input('MinDate',min(df_NC1['Date']),key=1)
+                                maxy= st.date_input('MaxDate',max(df_NC1['Date']),key=1)
 
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées.")
@@ -622,7 +619,7 @@ def main():
                             st.text("*NCR: Non conformité remontée\n*FNCR: Nombre de fiche de Non conformité remontée\n*NCC: Nombre de Non conformité cloturée\n*FNCC:Nombre de fiche de Non conformité cloturée")
 
 
-                            if st.button("Télécharger", key=22):
+                            if st.button("Télécharger", key=2):
                                 st.markdown(get_table_download_link(df_filter3), unsafe_allow_html=True)
                             #figure
                             df_filter3['NCR'] = pd.to_numeric(df_filter3['NCR'])
@@ -660,7 +657,7 @@ def main():
 
 
 
-                        CHANGEMENTS_exp= st.expander("CHANGEMENTS ENREGISTRÉS")
+                        CHANGEMENTS_exp= st.beta_expander("CHANGEMENTS ENREGISTRÉS")
                         with CHANGEMENTS_exp:
                             #CHANGEMENTS
                             df_Changements = pd.DataFrame(view_Changements(), columns=["id","IDD","Chantier","NCH","FNCH","NCHC","FNCHC","Date"])
@@ -684,8 +681,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_Changements1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_Changements1['Date']))
+                                miny= st.date_input('MinDate',min(df_Changements1['Date']),key=2)
+                                maxy= st.date_input('MaxDate',max(df_Changements1['Date']),key=2)
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -703,7 +700,7 @@ def main():
 
 
 
-                            if st.button("Télécharger", key=33):
+                            if st.button("Télécharger", key=3):
                                 st.markdown(get_table_download_link(df_filter4), unsafe_allow_html=True)
                             #figure
                             df_filter4['NCH'] = pd.to_numeric(df_filter4['NCH'])
@@ -739,7 +736,7 @@ def main():
                             st.plotly_chart(figCH1, use_container_width=True)
                             st.plotly_chart(figCH2, use_container_width=True)
 
-                        ANOMALIES_exp= st.expander("ANOMALIES")
+                        ANOMALIES_exp= st.beta_expander("ANOMALIES")
                         with ANOMALIES_exp:
                             #ANOMALIES
                             df_Anomalies = pd.DataFrame(view_Anomalies(), columns=["id","IDD","Chantier","NA","FNA","NAC","FNAC","Date"])
@@ -763,8 +760,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_Anomalies1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_Anomalies1['Date']))
+                                miny= st.date_input('MinDate',min(df_Anomalies1['Date']),key=3)
+                                maxy= st.date_input('MaxDate',max(df_Anomalies1['Date']),key=3)
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -780,7 +777,7 @@ def main():
                             st.dataframe(df_filter5)
                             st.text("*NA: Nombre d'anomalies enregistrés\n*FNA: Nombre de fiche d'anomalies enregistrés\n*NAC: Nombre d'anomalies Corrigées\n*FNAC:Nombre de fiche d'anomalies Corrigées")
 
-                            if st.button("Télécharger", key=44):
+                            if st.button("Télécharger", key=4):
                                 st.markdown(get_table_download_link(df_filter5), unsafe_allow_html=True)
                             #figure
                             df_filter5['NA'] = pd.to_numeric(df_filter5['NA'])
@@ -816,7 +813,7 @@ def main():
                             st.plotly_chart(figNA1, use_container_width=True)
                             st.plotly_chart(figNA2, use_container_width=True)
 
-                        ANALYSE_exp= st.expander("ANALYSE DES RISQUES RÉALISÉS(JSA)")
+                        ANALYSE_exp= st.beta_expander("ANALYSE DES RISQUES RÉALISÉS(JSA)")
                         with ANALYSE_exp:
                             #JSA
                             df_JSA = pd.DataFrame(view_JSA(), columns=["id","IDD","Chantier","NAct","NJSA","Date"])
@@ -841,8 +838,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_JSA1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_JSA1['Date']))
+                                miny= st.date_input('MinDate',min(df_JSA1['Date']),key=4)
+                                maxy= st.date_input('MaxDate',max(df_JSA1['Date']),key=4)
 
                             except:
                                 st.error("Nous ne pouvons afficher, car vous n'avez pas au moins deux dates enregistrées.")
@@ -858,7 +855,7 @@ def main():
                             st.dataframe(df_filter6)
                             st.text("*NAct: Nombre d'activité\n*NJSA: Analyse des risques réalisés")
 
-                            if st.button("Télécharger", key=55):
+                            if st.button("Télécharger", key=5):
                                 st.markdown(get_table_download_link(df_filter6), unsafe_allow_html=True)
                             #figure
                             df_filter6['NAct'] = pd.to_numeric(df_filter6['NAct'])
@@ -878,7 +875,7 @@ def main():
 
 
 
-                        INCIDENT_exp= st.expander("INCIDENT & ACCIDENT")
+                        INCIDENT_exp= st.beta_expander("INCIDENT & ACCIDENT")
                         with INCIDENT_exp:
 
                             #IA
@@ -903,8 +900,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_IA1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_IA1['Date']))
+                                miny= st.date_input('MinDate',min(df_IA1['Date']),key=5)
+                                maxy= st.date_input('MaxDate',max(df_IA1['Date']),key=5)
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -920,7 +917,7 @@ def main():
                             st.dataframe(df_filter7)
                             st.text("*NInc: Incident\n*AAA: Accident avec arrêt\n*ASA: Accident sans arrêt\n*AT:Accident de trajet\n*NJP:Nombre de jours perdus")
 
-                            if st.button("Télécharger", key=66):
+                            if st.button("Télécharger", key=6):
                                 st.markdown(get_table_download_link(df_filter7), unsafe_allow_html=True)
                             #figure
                             df_filter7['NInc'] = pd.to_numeric(df_filter7['NInc'])
@@ -966,7 +963,7 @@ def main():
 
 
 
-                        AUDIT_exp= st.expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION")
+                        AUDIT_exp= st.beta_expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION")
                         with AUDIT_exp:
                             #Audit
                             df_Audit = pd.DataFrame(view_Audit(), columns=["id","IDD","Chantier","AC","VC","NEU","SMPAR","NPR","IE","Date"])
@@ -990,8 +987,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_Audit1['Date']))
-                                maxy= st.date_input('MaxDate',max(df_Audit1['Date']))
+                                miny= st.date_input('MinDate',min(df_Audit1['Date']),key=6)
+                                maxy= st.date_input('MaxDate',max(df_Audit1['Date']),key=6)
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -1007,7 +1004,7 @@ def main():
                             st.dataframe(df_filter8)
                             st.text("*AC: Audit Chantier\n*VC:Visite conjointe\n*NEU:Nombre d'exercice d'urgence\n*SMPAR:Sensibilisation au modes de prévention des activités à risques\n*NPR:Nombre de procedures réalisées\n*IE:Inspections Environne-mentales")
 
-                            if st.button("Télécharger", key=77):
+                            if st.button("Télécharger", key=7):
                                 st.markdown(get_table_download_link(df_filter8), unsafe_allow_html=True)
                             #figure
                             df_filter8['AC'] = pd.to_numeric(df_filter8['AC'])
@@ -1046,7 +1043,7 @@ def main():
                     #Modification
                     elif choix == "METTRE À JOUR":
                         st.subheader("MODIFIER DES DONNÉES")
-                        with st.expander("ACCUEIL SECURITÉ"):
+                        with st.beta_expander("ACCUEIL SECURITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Accueil = pd.DataFrame(view_Accueil(), columns=["id","IDD","Chantier","Nbre_Arrivant","Nbre_induction","Date"])
 
@@ -1082,7 +1079,7 @@ def main():
                                 NArrivant = name_result[0][3]
                                 Ninduction = name_result[0][4]
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1126,7 +1123,7 @@ def main():
                         
                         
                         
-                        with st.expander("BRIEFING DE SÉCURITÉ( TBM)"):
+                        with st.beta_expander("BRIEFING DE SÉCURITÉ( TBM)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_TBM = pd.DataFrame(view_TBM(), columns=["id","IDD","Chantier","Nbre_chantier","Nbre_TBM","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1159,7 +1156,7 @@ def main():
                                 NChantier = name_result[0][3]
                                 NTBM = name_result[0][4]
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1196,7 +1193,7 @@ def main():
                                 st.dataframe(df_filter2)
                                 
                         
-                        with st.expander("NON CONFORMITÉ"):
+                        with st.beta_expander("NON CONFORMITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_NC = pd.DataFrame(view_NC(), columns=["id","IDD","Chantier","NCR","FNCR","NCC","FNCC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1232,7 +1229,7 @@ def main():
                                 NCC = name_result[0][5]
                                 FNCC = name_result[0][6]
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1270,7 +1267,7 @@ def main():
                                 st.dataframe(df_filter3)
 
 
-                        with st.expander("CHANGEMENTS ENREGISTRÉS"):
+                        with st.beta_expander("CHANGEMENTS ENREGISTRÉS"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Changements = pd.DataFrame(view_Changements(), columns=["id","IDD","Chantier","NCH","FNCH","NCHC","FNCHC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1302,7 +1299,7 @@ def main():
                                 NCHC = name_result[0][5]
                                 FNCHC = name_result[0][6]
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1339,7 +1336,7 @@ def main():
                                 st.dataframe(df_filter4)
 
 
-                        with st.expander("ANOMALIES"):
+                        with st.beta_expander("ANOMALIES"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Anomalies = pd.DataFrame(view_Anomalies(), columns=["id","IDD","Chantier","NA","FNA","NAC","FNAC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1371,7 +1368,7 @@ def main():
                                 NAC = name_result[0][5]
                                 FNAC = name_result[0][6]
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1408,7 +1405,7 @@ def main():
                                 st.dataframe(df_filter5)
 
                         
-                        with st.expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
+                        with st.beta_expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_JSA = pd.DataFrame(view_JSA(), columns=["id","IDD","Chantier","NAct","NJSA","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1438,7 +1435,7 @@ def main():
                                 NJSA = name_result[0][4]
                                
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1474,7 +1471,7 @@ def main():
 
 
 
-                        with st.expander("INCIDENT & ACCIDENT"):
+                        with st.beta_expander("INCIDENT & ACCIDENT"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_IA = pd.DataFrame(view_Incident_Accident(), columns=["id","IDD","Chantier","NInc","AAA","ASA","AT","NJP","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1508,7 +1505,7 @@ def main():
                                 NJP = name_result[0][7]
                                
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1546,7 +1543,7 @@ def main():
 
 
 
-                        with st.expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
+                        with st.beta_expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Audit = pd.DataFrame(view_Audit(), columns=["id","IDD","Chantier","AC","VC","NEU","SMPAR","NPR","IE","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1580,7 +1577,7 @@ def main():
                                 IE = name_result[0][8]
                                
                                 
-                                col1, col2= st.columns(2)
+                                col1, col2= st.beta_columns(2)
                                 with col1:
                                     st.subheader("CIBLE À MODIFIER")
                                 with col1:
@@ -1621,7 +1618,7 @@ def main():
                     #Suppression des données
                     elif choix ==  "SUPPRIMER":
                         st.subheader("SUPPRIMER DES DONNÉES")
-                        with st.expander("ACCUEIL SECURITÉ"):
+                        with st.beta_expander("ACCUEIL SECURITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Accueil = pd.DataFrame(view_Accueil(), columns=["id","IDD","Chantier","Nbre_Arrivant","Nbre_induction","Date"])
 
@@ -1679,7 +1676,7 @@ def main():
 
 
 
-                        with st.expander("BRIEFING DE SÉCURITÉ( TBM)"):
+                        with st.beta_expander("BRIEFING DE SÉCURITÉ( TBM)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_TBM = pd.DataFrame(view_TBM(), columns=["id","IDD","Chantier","Nbre_chantier","Nbre_TBM","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1726,7 +1723,7 @@ def main():
                                 st.dataframe(df_filter2)
 
 
-                        with st.expander("NON CONFORMITÉ"):
+                        with st.beta_expander("NON CONFORMITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_NC = pd.DataFrame(view_NC(), columns=["id","IDD","Chantier","NCR","FNCR","NCC","FNCC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1777,7 +1774,7 @@ def main():
                                 df_filter3=df_NC1.loc[mask]
                                 st.dataframe(df_filter3)
 
-                        with st.expander("CHANGEMENTS ENREGISTRÉS"):
+                        with st.beta_expander("CHANGEMENTS ENREGISTRÉS"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Changements = pd.DataFrame(view_Changements(), columns=["id","IDD","Chantier","NCH","FNCH","NCHC","FNCHC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1825,7 +1822,7 @@ def main():
                                 st.dataframe(df_filter4)
 
 
-                        with st.expander("ANOMALIES"):
+                        with st.beta_expander("ANOMALIES"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Anomalies = pd.DataFrame(view_Anomalies(), columns=["id","IDD","Chantier","NA","FNA","NAC","FNAC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1874,7 +1871,7 @@ def main():
 
 
 
-                        with st.expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
+                        with st.beta_expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_JSA = pd.DataFrame(view_JSA(), columns=["id","IDD","Chantier","NAct","NJSA","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1921,7 +1918,7 @@ def main():
                                 st.dataframe(df_filter6)
 
 
-                        with st.expander("INCIDENT & ACCIDENT"):
+                        with st.beta_expander("INCIDENT & ACCIDENT"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_IA = pd.DataFrame(view_Incident_Accident(), columns=["id","IDD","Chantier","NInc","AAA","ASA","AT","NJP","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1970,7 +1967,7 @@ def main():
                                 st.dataframe(df_filter7)
 
 
-                        with st.expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
+                        with st.beta_expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Audit = pd.DataFrame(view_Audit(), columns=["id","IDD","Chantier","AC","VC","NEU","SMPAR","NPR","IE","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -2147,7 +2144,7 @@ def main():
             ####fin
             st.success("Votre compte a été créé avec succès")
             st.info("Allez au menu de connexion pour vous connecter")
-        col1, col2, col3 = st.columns([1,6,1])
+        col1, col2, col3 = st.beta_columns([1,6,1])
         with col2:
             st.image("http://cabinetnpm.com/wp-content/uploads/2020/02/t%C3%A9l%C3%A9chargement.png",width=200,)
 
@@ -2156,7 +2153,7 @@ def main():
 
 
 image_ren ="""
-<img src="https://avatars.githubusercontent.com/u/85571576?v=4" alt="Avatar" style="vertical-align: middle;width: 100px;height: 100px;border-radius: 50%;" >
+<img src="https://1tpecash.fr/wp-content/uploads/elementor/thumbs/Renaud-Louis-osf6t5lcki4q31uzfafpi9yx3zp4rrq7je8tj6p938.png" alt="Avatar" style="vertical-align: middle;width: 100px;height: 100px;border-radius: 50%;" >
 """
 
 st.sidebar.markdown(image_ren, unsafe_allow_html = True)
