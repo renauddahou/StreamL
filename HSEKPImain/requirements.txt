@@ -23,7 +23,7 @@ docx==0.2.4
 docx2txt==0.8
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
 et-xmlfile==1.1.0
-Flask==2.1.2
+Flask
 Flask-MySQL==1.5.2
 https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-2.3.0/fr_core_news_sm-2.3.0.tar.gz
 futures==3.0.5
