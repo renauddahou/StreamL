@@ -108,3 +108,4 @@ XlsxWriter==3.0.3
 zipp==3.8.0
 matplotlib==3.2.2
 plotly==4.4.1
+pysqlite3
