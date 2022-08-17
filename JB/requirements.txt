@@ -4,3 +4,4 @@ streamlit-player>=0.1.5
 streamlit-tags>=1.2.8
 streamlit-webscrap-tool>=0.0.3
 Flask>=1.1.1
+nltk>=3.7
