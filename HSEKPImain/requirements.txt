@@ -81,6 +81,7 @@ scipy==1.7.3
 sentencepiece==0.1.96
 session-info==1.0.0
 simplejson==3.2.0
+streamlit==0.82.0
 six==1.16.0
 sklearn==0.0
 smart-open==6.0.0
