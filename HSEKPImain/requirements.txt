@@ -84,6 +84,7 @@ simplejson==3.2.0
 streamlit==0.82.0
 six==1.16.0
 sklearn==0.0
+seaborn==0.11.1
 smart-open==6.0.0
 sortedcontainers==2.4.0
 soupsieve==2.3.2.post1
