@@ -66,8 +66,6 @@ bson==0.5.10
 cachetools==4.2.2
 catalogue==1.0.0
 catboost==1.0.6
-certifi==2019.3.9
-clyent==1.2.2
 cmdstanpy==1.0.4
 coincurve==17.0.0
 colorama==0.4.4
