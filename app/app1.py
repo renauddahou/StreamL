@@ -13,7 +13,7 @@ import nltk
 from wordcloud import WordCloud
 from nltk.corpus import stopwords
 st.title("Application pour l'analyse en temps réel des tweets")
-st.markdown("*Cette application a été réalisée par Renaud Louis DAHOU*")
+st.markdown("*Cette application a été réalisée par Josué AFOUDA*")
 
 #call("python collector.py"+" "+"-t"+" "+str(tag), shell=True)
 #cmd = "python collector.py"+" "+"-t"+" "+str(tag)
@@ -23,6 +23,30 @@ def load_data():
     df = pd.read_csv(tag+'.csv',index_col='Date',parse_dates=True)
     return df
 
+def scrapetweet(tag):
+    # On peut récupérer plusieurs attributs du tweet
+    tag=tag
+    tweets = []
+    limit = 120
+
+    #for tweet in sntwitter.TwitterSearchScraper(str(tag+" "+'near:'+'"'+country+'"')).get_items():
+    for tweet in sntwitter.TwitterSearchScraper(tag).get_items():
+
+        # print(vars(tweet))
+        # break
+        if len(tweets) == limit:
+            break
+        else:
+            tweets.append([tweet.date, tweet.user.username, tweet.renderedContent, 
+						   tweet.user.description, tweet.content, tweet.user.followersCount, 
+						   tweet.likeCount, tweet.retweetCount, tweet.replyCount, 
+						   tweet.user.friendsCount, tweet.user.location])
+
+    df = pd.DataFrame.from_records(tweets, columns=['Date', 'User', 'Rendered Content', 'Description', 
+													'Tweet', 'Number of followers', 'Count of likes', 
+													'Count of retweets', 'Count of replies', 
+													'Number of friends', 'Location'])
+    return df
 
 
 import subprocess
@@ -35,8 +59,9 @@ with st.sidebar.beta_expander("Analyse"):
     st.text("Demarrer ou rappeler une analyse\nen cours")
     if st.button('submit/start'):
         #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag)+" "+"-c"+" "+str(country), shell=True)
-        subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag), shell=True)
-        time.sleep(10)
+        #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag), shell=True)
+        #time.sleep(10)
+        scrapetweet(tag)
 
 
 # Création d'une fonction pour compter le nombre de fois qu'un mot apparaît dans un tweet
@@ -68,7 +93,8 @@ if st.sidebar.checkbox('Show/Actualise'):
     # Importation des tweets
     try:
         #tweets_data = load_data()
-        tweets_data=load_data().drop_duplicates(subset=['Tweet'], keep='last')
+        #tweets_data=load_data().drop_duplicates(subset=['Tweet'], keep='last')
+        tweets_data=df.drop_duplicates(subset=['Tweet'], keep='last')
         tweets_data['Tweet clean'] = tweets_data['Tweet'].apply(clean_text)
     except:
         st.error("Patientez quelques secondes et cliquez sur le boutton Show/Actualise")
