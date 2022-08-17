@@ -18,10 +18,7 @@ st.markdown("*Cette application a été réalisée par Josué AFOUDA*")
 #call("python collector.py"+" "+"-t"+" "+str(tag), shell=True)
 #cmd = "python collector.py"+" "+"-t"+" "+str(tag)
 #os.system(cmd)
-#@st.cache
-def load_data():
-    df = pd.read_csv(tag+'.csv',index_col='Date',parse_dates=True)
-    return df
+
 
 def scrapetweet(tag):
     # On peut récupérer plusieurs attributs du tweet
@@ -61,8 +58,7 @@ with st.sidebar.beta_expander("Analyse"):
         #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag)+" "+"-c"+" "+str(country), shell=True)
         #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag), shell=True)
         #time.sleep(10)
-        df=scrapetweet(tag)
-
+        globals() df=scrapetweet(tag)
 
 # Création d'une fonction pour compter le nombre de fois qu'un mot apparaît dans un tweet
 def count_word(word, text):
@@ -92,9 +88,8 @@ if st.sidebar.checkbox('Show/Actualise'):
     #[python, rstats, statistic, machinelearning, deeplearning] = [0, 0, 0, 0, 0]
     # Importation des tweets
     try:
-        #tweets_data = load_data()
-        #tweets_data=load_data().drop_duplicates(subset=['Tweet'], keep='last')
-        tweets_data=df.drop_duplicates(subset=['Tweet'], keep='last')
+        tweets_data = df
+        tweets_data=load_data().drop_duplicates(subset=['Tweet'], keep='last')
         tweets_data['Tweet clean'] = tweets_data['Tweet'].apply(clean_text)
     except:
         st.error("Patientez quelques secondes et cliquez sur le boutton Show/Actualise")
