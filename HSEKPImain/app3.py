@@ -498,7 +498,7 @@ def main():
                             st.dataframe(df_filter1)
                             st.text("*Nbre_Arrivant: Nombre d'arrivant\n*Nbre_induction: Nombre d'induction")
 
-                            if st.button("Télécharger",key=00):
+                            if st.button("Télécharger",key=10):
                                 st.markdown(get_table_download_link(df_filter1), unsafe_allow_html=True)
                             #figure
                             df_filter1['Nbre_Arrivant'] = pd.to_numeric(df_filter1['Nbre_Arrivant'])
