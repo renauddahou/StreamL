@@ -75,7 +75,6 @@ chainside-btcpy-multi==0.2.81
 chardet==3.0.4
 charset-normalizer==2.0.4
 click==7.1.2
-click-plugins==1.1.1
 cloudpickle==2.0.0
 clyent==1.2.2
 cmdstanpy==1.0.4
