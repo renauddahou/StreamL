@@ -66,11 +66,7 @@ bson==0.5.10
 cachetools==4.2.2
 catalogue==1.0.0
 catboost==1.0.6
-cchardet==2.1.7
-censys==2.1.7
 certifi==2019.3.9
-chainside-btcpy-multi==0.2.81
-chardet==3.0.4
 clyent==1.2.2
 cmdstanpy==1.0.4
 coincurve==17.0.0
