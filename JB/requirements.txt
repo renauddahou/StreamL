@@ -84,9 +84,6 @@ cssselect==1.1.0
 cssselect2==0.6.0
 ctranslate2==2.17.0
 cufflinks==0.17.3
-cycler==0.11.0
-cymem==2.0.6
-Cython==0.29.28
 daal4py==2021.5.0
 dask==2022.2.1
 datashader==0.13.0
