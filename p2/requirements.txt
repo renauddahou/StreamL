@@ -1,3 +1,4 @@
+streamlit==0.82.0
 pandas-profiling
 streamlit_pandas_profiling
 sweetviz
