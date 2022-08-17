@@ -273,7 +273,7 @@ def main():
 			""")
         html_temp = """
 		<div style="background-color:#464e5f;padding:10px;border-radius:10px;margin:3px;">
-		<h1 style="font-family: 'BadaBoom BB', sans-serif;color:white;text-align:center;"><b>HSE KPI RECORDER & HSEbot</b></h1>
+		<h1 style="font-family: 'BadaBoom BB', sans-serif;color:white;text-align:center;"><b>HSE KPI RECORDER</b></h1>
 		</div>
 		"""
 	
@@ -283,20 +283,8 @@ def main():
         st.markdown("✨ **Vous pouvez ajouter; modifier; supprimer et visualiser vos données avec des graphes.**")
         st.markdown("✨ **Vous pouvez aussi téléchager vos données selon des intervalles de date.**")
         st.markdown("✨ **HSEbot vous permet de discuter de manière inter-active avec une intelligence artificielle qui vous donne des conseils de prévention sur les risques au chantier.**")
-
-
-        image_BOT = """
-		<center><img src="https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G"  alt="HSEBOT" height="150" width="200"></center>
-		"""
         
         col1, col2, col3 = st.columns([1,10,1])
-        with col2:
-            st.markdown(image_BOT, unsafe_allow_html = True)	
-            #st.image("https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G",width=400,)
-            #Bot HSE
-            user_input = get_text()
-            response = bot_initialize(user_input)
-            st.text_area("HSEBot:", value=response, height=200, max_chars=None, key=None)
 	
 
     elif choice == "Connexion":
