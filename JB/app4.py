@@ -14,8 +14,8 @@ from functrans import listToString,read_pdf,docx2txtrans,read_resumes,translator
 import os
 import io
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
+#nltk.download('punkt')
+#nltk.download('stopwords')
 import docx2txt
 from docx import Document
 from pdfminer.converter import TextConverter
