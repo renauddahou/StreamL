@@ -308,7 +308,7 @@ def main():
                     
                     image_temp ="""
                     <div style="background-color:#464e5f;padding:10px;border-radius:5px;margin:10px;">
-		    <img src="https://1tpecash.fr/wp-content/uploads/elementor/thumbs/Renaud-Louis-osf6t5lcki4q31uzfafpi9yx3zp4rrq7je8tj6p938.png" alt="Avatar" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
+		    <img src="https://avatars.githubusercontent.com/u/85571576?v=4" alt="Avatar" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
 		    <br/>
 		    <p style="color:white;text-align:justify">Bienvenue ! Je vous souhaite une bonne expérience, ce travail est le fruit de mes expériences en tant que Manager HSE et Data scientist vos avis à propos sont les bienvenues.</p>
 		    </div>
