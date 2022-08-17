@@ -498,7 +498,7 @@ def main():
                             st.dataframe(df_filter1)
                             st.text("*Nbre_Arrivant: Nombre d'arrivant\n*Nbre_induction: Nombre d'induction")
 
-                            if st.button("Télécharger",key=9):
+                            if st.button("Télécharger",key=00):
                                 st.markdown(get_table_download_link(df_filter1), unsafe_allow_html=True)
                             #figure
                             df_filter1['Nbre_Arrivant'] = pd.to_numeric(df_filter1['Nbre_Arrivant'])
@@ -558,7 +558,7 @@ def main():
                             st.dataframe(df_filter2)
                             st.text("*Nbre_chantier: Nombre de chantier\n*Nbre_TBM: Nombre de TBM")
 
-                            if st.button("Télécharger", key=1):
+                            if st.button("Télécharger", key=11):
                                 st.markdown(get_table_download_link(df_filter2), unsafe_allow_html=True)
                             #figure
                             df_filter2['Nbre_chantier'] = pd.to_numeric(df_filter2['Nbre_chantier'])
@@ -622,7 +622,7 @@ def main():
                             st.text("*NCR: Non conformité remontée\n*FNCR: Nombre de fiche de Non conformité remontée\n*NCC: Nombre de Non conformité cloturée\n*FNCC:Nombre de fiche de Non conformité cloturée")
 
 
-                            if st.button("Télécharger", key=2):
+                            if st.button("Télécharger", key=22):
                                 st.markdown(get_table_download_link(df_filter3), unsafe_allow_html=True)
                             #figure
                             df_filter3['NCR'] = pd.to_numeric(df_filter3['NCR'])
@@ -703,7 +703,7 @@ def main():
 
 
 
-                            if st.button("Télécharger", key=3):
+                            if st.button("Télécharger", key=33):
                                 st.markdown(get_table_download_link(df_filter4), unsafe_allow_html=True)
                             #figure
                             df_filter4['NCH'] = pd.to_numeric(df_filter4['NCH'])
@@ -780,7 +780,7 @@ def main():
                             st.dataframe(df_filter5)
                             st.text("*NA: Nombre d'anomalies enregistrés\n*FNA: Nombre de fiche d'anomalies enregistrés\n*NAC: Nombre d'anomalies Corrigées\n*FNAC:Nombre de fiche d'anomalies Corrigées")
 
-                            if st.button("Télécharger", key=4):
+                            if st.button("Télécharger", key=44):
                                 st.markdown(get_table_download_link(df_filter5), unsafe_allow_html=True)
                             #figure
                             df_filter5['NA'] = pd.to_numeric(df_filter5['NA'])
@@ -858,7 +858,7 @@ def main():
                             st.dataframe(df_filter6)
                             st.text("*NAct: Nombre d'activité\n*NJSA: Analyse des risques réalisés")
 
-                            if st.button("Télécharger", key=5):
+                            if st.button("Télécharger", key=55):
                                 st.markdown(get_table_download_link(df_filter6), unsafe_allow_html=True)
                             #figure
                             df_filter6['NAct'] = pd.to_numeric(df_filter6['NAct'])
@@ -920,7 +920,7 @@ def main():
                             st.dataframe(df_filter7)
                             st.text("*NInc: Incident\n*AAA: Accident avec arrêt\n*ASA: Accident sans arrêt\n*AT:Accident de trajet\n*NJP:Nombre de jours perdus")
 
-                            if st.button("Télécharger", key=6):
+                            if st.button("Télécharger", key=66):
                                 st.markdown(get_table_download_link(df_filter7), unsafe_allow_html=True)
                             #figure
                             df_filter7['NInc'] = pd.to_numeric(df_filter7['NInc'])
@@ -1007,7 +1007,7 @@ def main():
                             st.dataframe(df_filter8)
                             st.text("*AC: Audit Chantier\n*VC:Visite conjointe\n*NEU:Nombre d'exercice d'urgence\n*SMPAR:Sensibilisation au modes de prévention des activités à risques\n*NPR:Nombre de procedures réalisées\n*IE:Inspections Environne-mentales")
 
-                            if st.button("Télécharger", key=7):
+                            if st.button("Télécharger", key=77):
                                 st.markdown(get_table_download_link(df_filter8), unsafe_allow_html=True)
                             #figure
                             df_filter8['AC'] = pd.to_numeric(df_filter8['AC'])
