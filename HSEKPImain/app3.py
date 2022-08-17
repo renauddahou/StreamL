@@ -602,8 +602,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_NC1['Date']),key=1)
-                                maxy= st.date_input('MaxDate',max(df_NC1['Date']),key=1)
+                                miny= st.date_input('MinDate',min(df_NC1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_NC1['Date']))
 
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées.")
@@ -684,8 +684,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_Changements1['Date']),key=2)
-                                maxy= st.date_input('MaxDate',max(df_Changements1['Date']),key=2)
+                                miny= st.date_input('MinDate',min(df_Changements1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_Changements1['Date']))
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -763,8 +763,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_Anomalies1['Date']),key=3)
-                                maxy= st.date_input('MaxDate',max(df_Anomalies1['Date']),key=3)
+                                miny= st.date_input('MinDate',min(df_Anomalies1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_Anomalies1['Date']))
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -841,8 +841,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_JSA1['Date']),key=4)
-                                maxy= st.date_input('MaxDate',max(df_JSA1['Date']),key=4)
+                                miny= st.date_input('MinDate',min(df_JSA1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_JSA1['Date']))
 
                             except:
                                 st.error("Nous ne pouvons afficher, car vous n'avez pas au moins deux dates enregistrées.")
@@ -903,8 +903,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_IA1['Date']),key=5)
-                                maxy= st.date_input('MaxDate',max(df_IA1['Date']),key=5)
+                                miny= st.date_input('MinDate',min(df_IA1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_IA1['Date']))
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
@@ -990,8 +990,8 @@ def main():
                             #intervalle de date
                             st.write('SELECTIONNEZ UN INTERVALLE DE DATE POUR VOTRE GRILLE')
                             try:
-                                miny= st.date_input('MinDate',min(df_Audit1['Date']),key=6)
-                                maxy= st.date_input('MaxDate',max(df_Audit1['Date']),key=6)
+                                miny= st.date_input('MinDate',min(df_Audit1['Date']))
+                                maxy= st.date_input('MaxDate',max(df_Audit1['Date']))
                             except:
                                 st.error("Nous ne pouvons afficher car vous n'avez pas aumoins deux dates enrégistrées")
                                 st.stop()
