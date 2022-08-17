@@ -7,3 +7,5 @@ Flask>=1.1.1
 nltk>=3.7
 docx2txt>=0.8
 python-docx>=0.8.11
+pdfminer>=20191125
+pdfminer.six>=20191110
