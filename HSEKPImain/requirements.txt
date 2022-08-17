@@ -11,3 +11,4 @@ pdfminer>=20191125
 pdfminer.six>=20191110
 deep-translator>=1.5.0
 pyresparser>=1.0.6
+XlsxWriter>=3.0.3
