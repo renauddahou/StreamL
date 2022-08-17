@@ -6,4 +6,4 @@ streamlit-webscrap-tool>=0.0.3
 Flask>=1.1.1
 nltk>=3.7
 docx2txt>=0.8
-docx>=0.2.4
+python-docx>=0.8.11
