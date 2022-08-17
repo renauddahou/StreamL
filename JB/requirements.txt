@@ -7,10 +7,6 @@ aiohttp-socks==0.7.1
 aiosignal==1.2.0
 alabaster==0.7.12
 altair==4.2.0
-altgraph==0.17.2
-anaconda-client==1.9.0
-anaconda-navigator==2.1.4
-anaconda-project==0.10.2
 anyio==3.5.0
 appdirs==1.4.4
 argcomplete==1.10.3
@@ -91,14 +87,6 @@ commonmark==0.9.1
 commonregex==1.5.4
 compressed-rtf==1.0.6
 comtypes==1.1.10
-conda==4.13.0
-conda-build==3.21.8
-conda-content-trust==0+unknown
-conda-pack==0.6.0
-conda-package-handling==1.8.1
-conda-repo-cli==1.0.4
-conda-token==0.3.0
-conda-verify==3.4.2
 configparser==5.2.0
 constantly==15.1.0
 convertdate==2.4.0
