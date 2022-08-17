@@ -58,8 +58,9 @@ with st.sidebar.beta_expander("Analyse"):
         #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag)+" "+"-c"+" "+str(country), shell=True)
         #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag), shell=True)
         #time.sleep(10)
+        df="df"
         globals()[df]=scrapetweet(tag)
-        
+
 # Création d'une fonction pour compter le nombre de fois qu'un mot apparaît dans un tweet
 def count_word(word, text):
     word = word.lower()
