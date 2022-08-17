@@ -70,7 +70,6 @@ cchardet==2.1.7
 censys==2.1.7
 certifi==2019.3.9
 cffi==1.15.0
-cfscrape==2.1.1
 chainside-btcpy-multi==0.2.81
 chardet==3.0.4
 clyent==1.2.2
