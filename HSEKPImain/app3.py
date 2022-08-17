@@ -15,6 +15,7 @@ import plotly.express as px
 from PIL import Image
 import streamlit.components.v1 as components
 
+
 #imglog = Image.open('logo.jpg')
 #st.set_page_config(page_title='HSEbot-KPI', page_icon=imglog, initial_sidebar_state='expanded', layout='wide')#  layout="wide"
 
@@ -287,6 +288,15 @@ def main():
         image_BOT = """
 		<center><img src="https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G"  alt="HSEBOT" height="150" width="200"></center>
 		"""
+        
+        col1, col2, col3 = st.beta_columns([1,10,1])
+        with col2:
+            st.markdown(image_BOT, unsafe_allow_html = True)	
+            #st.image("https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G",width=400,)
+            #Bot HSE
+            user_input = get_text()
+            response = bot_initialize(user_input)
+            st.text_area("HSEBot:", value=response, height=200, max_chars=None, key=None)
 	
 
     elif choice == "Connexion":
@@ -2113,38 +2123,38 @@ def main():
             T2=(datetime.now() - timedelta(2)).strftime('%Y-%m-%d')
             Date=T2
             Date2=T1
-            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NArrivant,Ninduction,Date2))
+            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NArrivant,Ninduction,Date2))
             conn.commit()
-            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NArrivant,Ninduction,Date2))
+            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NArrivant,Ninduction,Date2))
             conn.commit()
-            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NChantier,NTBM,Date))
+            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NChantier,NTBM,Date))
             conn.commit()
-            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NChantier,NTBM,Date2))
+            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NChantier,NTBM,Date2))
             conn.commit()
-            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date))
+            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date))
             conn.commit()
 
-            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date2))
+            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date2))
             conn.commit()
-            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date))
+            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date))
             conn.commit()
-            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date2))
+            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date2))
             conn.commit()
-            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date))
+            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date))
             conn.commit()
-            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date2))
+            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date2))
             conn.commit()
-            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NAct,NJSA,Date))
+            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NAct,NJSA,Date))
             conn.commit()
-            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NAct,NJSA,Date2))
+            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NAct,NJSA,Date2))
             conn.commit()
-            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date))
+            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (?,?,?,?,?,?,?,?)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date))
             conn.commit()
-            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date2))
+            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (?,?,?,?,?,?,?,?)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date2))
             conn.commit()
-            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date))
+            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (?,?,?,?,?,?,?,?,?)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date))
             conn.commit()
-            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date2))
+            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (?,?,?,?,?,?,?,?,?)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date2))
             conn.commit()
             ####fin
             st.success("Votre compte a été créé avec succès")
