@@ -259,7 +259,7 @@ elif choice == "Inscription":
 
     st.title("10 CONSEILS PRATIQUES POUR DÉCROCHER UN JOB EN DATA SCIENCE MÊME EN ÉTANT DÉBUTANT :sleuth_or_spy:")
     
-    image = Image.open('im/im1.jpeg')
+    image = Image.open('/im/im1.jpeg')
     st.image(image, caption='Sunrise by the mountains',width=700)
     
     st.markdown(
@@ -278,7 +278,7 @@ elif choice == "Inscription":
         """,
                     unsafe_allow_html=True,
                 )
-    image = Image.open('im/im2.png')
+    image = Image.open('/im/im2.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -295,7 +295,7 @@ elif choice == "Inscription":
         """,
                     unsafe_allow_html=True,
                 )
-    image = Image.open('im/im3.png')
+    image = Image.open('/im/im3.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -316,7 +316,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im4.png')
+    image = Image.open('/im/im4.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -343,7 +343,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im5.png')
+    image = Image.open('/im/im5.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -381,7 +381,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im6.png')
+    image = Image.open('/im/im6.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -405,7 +405,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im7.png')
+    image = Image.open('/im/im7.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -432,7 +432,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im8.png')
+    image = Image.open('/im/im8.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -455,7 +455,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im9.png')
+    image = Image.open('/im/im9.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -470,7 +470,7 @@ elif choice == "Inscription":
                     unsafe_allow_html=True,
                 )
 
-    image = Image.open('im/im10.png')
+    image = Image.open('/im/im10.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -500,7 +500,7 @@ elif choice == "Inscription":
                 )
 
 
-    image = Image.open('im/im11.png')
+    image = Image.open('/im/im11.png')
     st.image(image, caption='Sunrise by the mountains',width=700)
     st.markdown(
         """
@@ -541,9 +541,3 @@ elif choice == "Inscription":
         """,
                     unsafe_allow_html=True,
                 )
-
-
-
-
-
-
