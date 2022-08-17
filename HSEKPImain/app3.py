@@ -14,12 +14,19 @@ import xlsxwriter
 import plotly.express as px
 from PIL import Image
 import streamlit.components.v1 as components
-import subprocess
-#subprocess.Popen("chown www-data data.db", shell=True)
-#subprocess.Popen("chmod 777 data.db", shell=True)
+from responses import *
+from bot import *
+from bot import LemTokens,Normalize,Normalize,get_text,load_doc,intent,response,intent,bot_initialize
 
 
-@st.cache
+
+#imglog = Image.open('logo.jpg')
+#st.set_page_config(page_title='HSEbot-KPI', page_icon=imglog, initial_sidebar_state='expanded', layout='wide')#  layout="wide"
+
+
+
+
+@st.cache(allow_output_mutation=True)
 def to_excel(df):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
@@ -27,7 +34,7 @@ def to_excel(df):
     writer.save()
     processed_data = output.getvalue()
     return processed_data
-@st.cache
+@st.cache(allow_output_mutation=True)
 def get_table_download_link(df):
     """Generates a link allowing the data in a given panda dataframe to be downloaded
     in:  dataframe
@@ -38,7 +45,6 @@ def get_table_download_link(df):
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="extract.xlsx">Votre fichier excel</a>' # decode b'abc' => abc
 
 #pour verifier le type d'entrée
-@st.cache
 def inputcheck(inputext):
     try:
         inputext = int(inputext)
@@ -48,25 +54,24 @@ def inputcheck(inputext):
     return inputext
 
 
-# DB Management
-import sqlite3
-conn = sqlite3.connect('data.db')
-c = conn.cursor()
+
+
 
 
 # Security
 #passlib,hashlib,bcrypt,scrypt
 import hashlib
-@st.cache
+@st.cache(allow_output_mutation=True)
 def make_hashes(password):
     return hashlib.sha256(str.encode(password)).hexdigest()
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def check_hashes(password,hashed_text):
     if make_hashes(password) == hashed_text:
         return hashed_text
     return False
-    
+
+
 
 def main():
     #couleur du select box
@@ -98,7 +103,7 @@ def main():
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-    menu = ["Accueil", "Connexion", "Inscription"]
+    menu = ["Accueil", "Connexion","Inscription"] #
     choice = st.sidebar.selectbox("Menu",menu)
 
     if choice == "Accueil":
@@ -210,20 +215,20 @@ def main():
 
 			<div class="mySlides fade">
 			  <div class="numbertext">1 / 3</div>
-			  <img src="https://cdn.shopify.com/s/files/1/2382/6729/products/SP124958.jpg?v=1536179866" style="width:100%">
+			  <img src="https://cdn.shopify.com/s/files/1/2382/6729/products/SP124958.jpg?v=1536179866" style="width:100%;border-radius:5px;">
 			  <div class="text"></div>
 			</div>
 
 			<div class="mySlides fade">
 			  <div class="numbertext">2 / 3</div>
 
-			  <img src="https://www.hsetrain.org/images/slide1.jpg" style="width:100%">
+			  <img src="https://www.hsetrain.org/images/slide1.jpg" style="width:100%;border-radius:5px;">
 			  <div class="text"></div>
 			</div>
 
 			<div class="mySlides fade">
 			  <div class="numbertext">3 / 3</div>
-			  <img src="https://www.spc.com.sg/wp-content/uploads/2015/11/banner-community-society-hse.jpg" style="width:100%">
+			  <img src="https://www.spc.com.sg/wp-content/uploads/2015/11/banner-community-society-hse.jpg" style="width:100%;border-radius:5px;">
 			  <div class="text"></div>
 			</div>
 
@@ -272,15 +277,31 @@ def main():
 			""")
         html_temp = """
 		<div style="background-color:#464e5f;padding:10px;border-radius:10px;margin:3px;">
-		<h2 style="color:white;text-align:center;"><b>HSE KPI RECORDER</b></h2>
-		<h3 style="color:white;text-align:center;">Application d'analyse et de suivi des indicateurs de performance HSE</h3>
+		<h1 style="font-family: 'BadaBoom BB', sans-serif;color:white;text-align:center;"><b>HSE KPI RECORDER & HSEbot</b></h1>
 		</div>
 		"""
+	
         #components.html(html_temp)
         st.markdown(html_temp, unsafe_allow_html = True)
-        col1, col2, col3 = st.beta_columns([1,6,1])
+        st.markdown("✨ **Elle est une application d'analyse et de suivi des indicateurs de performance HSE dotée d'une intelligence artificielle pour identifier et prevenir les risques et dangers au travail.**")
+        st.markdown("✨ **Vous pouvez ajouter; modifier; supprimer et visualiser vos données avec des graphes.**")
+        st.markdown("✨ **Vous pouvez aussi téléchager vos données selon des intervalles de date.**")
+        st.markdown("✨ **HSEbot vous permet de discuter de manière inter-active avec une intelligence artificielle qui vous donne des conseils de prévention sur les risques au chantier.**")
+
+
+        image_BOT = """
+		<center><img src="https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G"  alt="HSEBOT" height="150" width="200"></center>
+		"""
+        
+        col1, col2, col3 = st.beta_columns([1,10,1])
         with col2:
-            st.image("https://i0.wp.com/www.aprentiv.com/wp-content/uploads/2017/04/Pr%C3%A9sentation-des-normes-dhygi%C3%A8ne-et-s%C3%A9curit%C3%A9-%C3%A0-respecter-en-entreprise.png",width=400,)
+            st.markdown(image_BOT, unsafe_allow_html = True)	
+            #st.image("https://www.trainingjournal.com/sites/www.trainingjournal.com/files/styles/original_-_local_copy/entityshare/23924%3Fitok%3DKw_wPH9G",width=400,)
+            #Bot HSE
+            user_input = get_text()
+            response = bot_initialize(user_input)
+            st.text_area("HSEBot:", value=response, height=200, max_chars=None, key=None)
+	
 
     elif choice == "Connexion":
         st.subheader("Section Connexion")
@@ -303,7 +324,7 @@ def main():
                     
                     image_temp ="""
                     <div style="background-color:#464e5f;padding:10px;border-radius:5px;margin:10px;">
-		    <img src="https://avatars.githubusercontent.com/u/85571576?v=4" alt="Avatar" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
+		    <img src="https://1tpecash.fr/wp-content/uploads/elementor/thumbs/Renaud-Louis-osf6t5lcki4q31uzfafpi9yx3zp4rrq7je8tj6p938.png" alt="Avatar" style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
 		    <br/>
 		    <p style="color:white;text-align:justify">Bienvenue ! Je vous souhaite une bonne expérience, ce travail est le fruit de mes expériences en tant que Manager HSE et Data scientist vos avis à propos sont les bienvenues.</p>
 		    </div>
@@ -450,7 +471,7 @@ def main():
                     elif choix == "AFFICHER":
                         st.subheader("AFFICHEZ VOS DONNÉES")
                         st.warning("Si vous faites des enregistrements à une date antérieure à celle de votre inscription veuillez spécifier l'intervalle de date, car l'affichage des données est par défaut à partir de votre jour d'inscription.")
-                        ACCUEIL_exp= st.expander("ACCUEIL SECURITÉ")
+                        ACCUEIL_exp= st.beta_expander("ACCUEIL SECURITÉ")
                         with ACCUEIL_exp:
                             df_Accueil = pd.DataFrame(view_Accueil(), columns=["id","IDD","Chantier","Nbre_Arrivant","Nbre_induction","Date"])
 
@@ -512,7 +533,7 @@ def main():
                             st.plotly_chart(fig, use_container_width=True)
 
 
-                        BRIEFING_exp= st.expander("BRIEFING DE SÉCURITÉ( TBM)")
+                        BRIEFING_exp= st.beta_expander("BRIEFING DE SÉCURITÉ( TBM)")
                         with BRIEFING_exp:
                             #TMB
                             df_TBM = pd.DataFrame(view_TBM(), columns=["id","IDD","Chantier","Nbre_chantier","Nbre_TBM","Date"])
@@ -572,7 +593,7 @@ def main():
                             st.plotly_chart(figTBM, use_container_width=True)
 
 
-                        CONFORMITÉ_exp= st.expander("NON CONFORMITÉ")
+                        CONFORMITÉ_exp= st.beta_expander("NON CONFORMITÉ")
                         with CONFORMITÉ_exp:
                             #NON CONFORMITÉ
                             df_NC = pd.DataFrame(view_NC(), columns=["id","IDD","Chantier","NCR","FNCR","NCC","FNCC","Date"])
@@ -655,7 +676,7 @@ def main():
 
 
 
-                        CHANGEMENTS_exp= st.expander("CHANGEMENTS ENREGISTRÉS")
+                        CHANGEMENTS_exp= st.beta_expander("CHANGEMENTS ENREGISTRÉS")
                         with CHANGEMENTS_exp:
                             #CHANGEMENTS
                             df_Changements = pd.DataFrame(view_Changements(), columns=["id","IDD","Chantier","NCH","FNCH","NCHC","FNCHC","Date"])
@@ -734,7 +755,7 @@ def main():
                             st.plotly_chart(figCH1, use_container_width=True)
                             st.plotly_chart(figCH2, use_container_width=True)
 
-                        ANOMALIES_exp= st.expander("ANOMALIES")
+                        ANOMALIES_exp= st.beta_expander("ANOMALIES")
                         with ANOMALIES_exp:
                             #ANOMALIES
                             df_Anomalies = pd.DataFrame(view_Anomalies(), columns=["id","IDD","Chantier","NA","FNA","NAC","FNAC","Date"])
@@ -811,7 +832,7 @@ def main():
                             st.plotly_chart(figNA1, use_container_width=True)
                             st.plotly_chart(figNA2, use_container_width=True)
 
-                        ANALYSE_exp= st.expander("ANALYSE DES RISQUES RÉALISÉS(JSA)")
+                        ANALYSE_exp= st.beta_expander("ANALYSE DES RISQUES RÉALISÉS(JSA)")
                         with ANALYSE_exp:
                             #JSA
                             df_JSA = pd.DataFrame(view_JSA(), columns=["id","IDD","Chantier","NAct","NJSA","Date"])
@@ -873,7 +894,7 @@ def main():
 
 
 
-                        INCIDENT_exp= st.expander("INCIDENT & ACCIDENT")
+                        INCIDENT_exp= st.beta_expander("INCIDENT & ACCIDENT")
                         with INCIDENT_exp:
 
                             #IA
@@ -961,7 +982,7 @@ def main():
 
 
 
-                        AUDIT_exp= st.expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION")
+                        AUDIT_exp= st.beta_expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION")
                         with AUDIT_exp:
                             #Audit
                             df_Audit = pd.DataFrame(view_Audit(), columns=["id","IDD","Chantier","AC","VC","NEU","SMPAR","NPR","IE","Date"])
@@ -1041,7 +1062,7 @@ def main():
                     #Modification
                     elif choix == "METTRE À JOUR":
                         st.subheader("MODIFIER DES DONNÉES")
-                        with st.expander("ACCUEIL SECURITÉ"):
+                        with st.beta_expander("ACCUEIL SECURITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Accueil = pd.DataFrame(view_Accueil(), columns=["id","IDD","Chantier","Nbre_Arrivant","Nbre_induction","Date"])
 
@@ -1121,7 +1142,7 @@ def main():
                         
                         
                         
-                        with st.expander("BRIEFING DE SÉCURITÉ( TBM)"):
+                        with st.beta_expander("BRIEFING DE SÉCURITÉ( TBM)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_TBM = pd.DataFrame(view_TBM(), columns=["id","IDD","Chantier","Nbre_chantier","Nbre_TBM","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1191,7 +1212,7 @@ def main():
                                 st.dataframe(df_filter2)
                                 
                         
-                        with st.expander("NON CONFORMITÉ"):
+                        with st.beta_expander("NON CONFORMITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_NC = pd.DataFrame(view_NC(), columns=["id","IDD","Chantier","NCR","FNCR","NCC","FNCC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1265,7 +1286,7 @@ def main():
                                 st.dataframe(df_filter3)
 
 
-                        with st.expander("CHANGEMENTS ENREGISTRÉS"):
+                        with st.beta_expander("CHANGEMENTS ENREGISTRÉS"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Changements = pd.DataFrame(view_Changements(), columns=["id","IDD","Chantier","NCH","FNCH","NCHC","FNCHC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1334,7 +1355,7 @@ def main():
                                 st.dataframe(df_filter4)
 
 
-                        with st.expander("ANOMALIES"):
+                        with st.beta_expander("ANOMALIES"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Anomalies = pd.DataFrame(view_Anomalies(), columns=["id","IDD","Chantier","NA","FNA","NAC","FNAC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1403,7 +1424,7 @@ def main():
                                 st.dataframe(df_filter5)
 
                         
-                        with st.expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
+                        with st.beta_expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_JSA = pd.DataFrame(view_JSA(), columns=["id","IDD","Chantier","NAct","NJSA","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1469,7 +1490,7 @@ def main():
 
 
 
-                        with st.expander("INCIDENT & ACCIDENT"):
+                        with st.beta_expander("INCIDENT & ACCIDENT"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_IA = pd.DataFrame(view_Incident_Accident(), columns=["id","IDD","Chantier","NInc","AAA","ASA","AT","NJP","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1541,7 +1562,7 @@ def main():
 
 
 
-                        with st.expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
+                        with st.beta_expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Audit = pd.DataFrame(view_Audit(), columns=["id","IDD","Chantier","AC","VC","NEU","SMPAR","NPR","IE","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1616,7 +1637,7 @@ def main():
                     #Suppression des données
                     elif choix ==  "SUPPRIMER":
                         st.subheader("SUPPRIMER DES DONNÉES")
-                        with st.expander("ACCUEIL SECURITÉ"):
+                        with st.beta_expander("ACCUEIL SECURITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Accueil = pd.DataFrame(view_Accueil(), columns=["id","IDD","Chantier","Nbre_Arrivant","Nbre_induction","Date"])
 
@@ -1674,7 +1695,7 @@ def main():
 
 
 
-                        with st.expander("BRIEFING DE SÉCURITÉ( TBM)"):
+                        with st.beta_expander("BRIEFING DE SÉCURITÉ( TBM)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_TBM = pd.DataFrame(view_TBM(), columns=["id","IDD","Chantier","Nbre_chantier","Nbre_TBM","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1721,7 +1742,7 @@ def main():
                                 st.dataframe(df_filter2)
 
 
-                        with st.expander("NON CONFORMITÉ"):
+                        with st.beta_expander("NON CONFORMITÉ"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_NC = pd.DataFrame(view_NC(), columns=["id","IDD","Chantier","NCR","FNCR","NCC","FNCC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1772,7 +1793,7 @@ def main():
                                 df_filter3=df_NC1.loc[mask]
                                 st.dataframe(df_filter3)
 
-                        with st.expander("CHANGEMENTS ENREGISTRÉS"):
+                        with st.beta_expander("CHANGEMENTS ENREGISTRÉS"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Changements = pd.DataFrame(view_Changements(), columns=["id","IDD","Chantier","NCH","FNCH","NCHC","FNCHC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1820,7 +1841,7 @@ def main():
                                 st.dataframe(df_filter4)
 
 
-                        with st.expander("ANOMALIES"):
+                        with st.beta_expander("ANOMALIES"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Anomalies = pd.DataFrame(view_Anomalies(), columns=["id","IDD","Chantier","NA","FNA","NAC","FNAC","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1869,7 +1890,7 @@ def main():
 
 
 
-                        with st.expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
+                        with st.beta_expander("ANALYSE DES RISQUES RÉALISÉS(JSA)"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_JSA = pd.DataFrame(view_JSA(), columns=["id","IDD","Chantier","NAct","NJSA","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1916,7 +1937,7 @@ def main():
                                 st.dataframe(df_filter6)
 
 
-                        with st.expander("INCIDENT & ACCIDENT"):
+                        with st.beta_expander("INCIDENT & ACCIDENT"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_IA = pd.DataFrame(view_Incident_Accident(), columns=["id","IDD","Chantier","NInc","AAA","ASA","AT","NJP","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -1965,7 +1986,7 @@ def main():
                                 st.dataframe(df_filter7)
 
 
-                        with st.expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
+                        with st.beta_expander("AUDIT CHANTIER; VISITE CONJOINTE;  PRÉVENTION ET INSPECTION"):
                             st.markdown('### DONNÉE ACTUELLE')
                             df_Audit = pd.DataFrame(view_Audit(), columns=["id","IDD","Chantier","AC","VC","NEU","SMPAR","NPR","IE","Date"])
                             IDD2 = email.strip('][').split(', ')
@@ -2106,38 +2127,38 @@ def main():
             T2=(datetime.now() - timedelta(2)).strftime('%Y-%m-%d')
             Date=T2
             Date2=T1
-            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NArrivant,Ninduction,Date2))
+            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NArrivant,Ninduction,Date2))
             conn.commit()
-            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NArrivant,Ninduction,Date2))
+            c.execute('INSERT INTO Accueil(IDD,Chantier,NArrivant,Ninduction,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NArrivant,Ninduction,Date2))
             conn.commit()
-            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NChantier,NTBM,Date))
+            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NChantier,NTBM,Date))
             conn.commit()
-            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NChantier,NTBM,Date2))
+            c.execute('INSERT INTO TBM(IDD,Chantier,NChantier,NTBM,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NChantier,NTBM,Date2))
             conn.commit()
-            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date))
+            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date))
             conn.commit()
 
-            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date2))
+            c.execute('INSERT INTO NC(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCR,FNCR,NCC,FNCC,Date2))
             conn.commit()
-            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date))
+            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date))
             conn.commit()
-            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date2))
+            c.execute('INSERT INTO Changements(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NCH,FNCH,NCHC,FNCHC,Date2))
             conn.commit()
-            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date))
+            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date))
             conn.commit()
-            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (?,?,?,?,?,?,?)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date2))
+            c.execute('INSERT INTO Anomalies(IDD,Chantier,NA,FNA,NAC,FNAC,Date) VALUES (%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NA,FNA,NAC,FNAC,Date2))
             conn.commit()
-            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NAct,NJSA,Date))
+            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NAct,NJSA,Date))
             conn.commit()
-            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (?,?,?,?,?)',(IDD,Chantier,NAct,NJSA,Date2))
+            c.execute('INSERT INTO JSA(IDD,Chantier,NAct,NJSA,Date) VALUES (%s,%s,%s,%s,%s)',(IDD,Chantier,NAct,NJSA,Date2))
             conn.commit()
-            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (?,?,?,?,?,?,?,?)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date))
+            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date))
             conn.commit()
-            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (?,?,?,?,?,?,?,?)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date2))
+            c.execute('INSERT INTO Incident_Accident(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,NInc,AAA,ASA,AT,NJP,Date2))
             conn.commit()
-            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (?,?,?,?,?,?,?,?,?)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date))
+            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date))
             conn.commit()
-            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (?,?,?,?,?,?,?,?,?)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date2))
+            c.execute('INSERT INTO Audit(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',(IDD,Chantier,AC,VC,NEU,SMPAR,NPR,IE,Date2))
             conn.commit()
             ####fin
             st.success("Votre compte a été créé avec succès")
@@ -2158,6 +2179,6 @@ st.sidebar.markdown(image_ren, unsafe_allow_html = True)
 st.sidebar.markdown('**Auteur: Renaud Louis DAHOU**')
 st.sidebar.markdown('Email:dahou.r@yahoo.com')
 st.sidebar.markdown('[Linkedin](https://www.linkedin.com/in/dahou-renaud-louis-8958599a/)')
-
+st.sidebar.warning('Pour tester HSE KPI RECORDER et faire des enregistrements, allez dans menu- connexion et mettez les informations de connexion ou inscrivez-vous si vous êtes nouveau.') #.\n Email:dahou.r@yahoo.com \n Mot de passe:lyne18
 if __name__ == '__main__':
     main()
