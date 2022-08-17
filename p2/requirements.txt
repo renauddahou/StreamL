@@ -1,0 +1,3 @@
+pandas-profiling
+streamlit_pandas_profiling
+sweetviz
