@@ -1,2 +1,15 @@
-streamlit
-codecs
+streamlit==0.82.0
+streamlit-ace>=0.1.1
+streamlit-player>=0.1.5
+streamlit-tags>=1.2.8
+streamlit-webscrap-tool>=0.0.3
+Flask>=1.1.1
+nltk>=3.7
+docx2txt>=0.8
+python-docx>=0.8.11
+pdfminer>=20191125
+pdfminer.six>=20191110
+deep-translator>=1.5.0
+pyresparser>=1.0.6
+XlsxWriter>=3.0.3
+plotly>=5.6.0
