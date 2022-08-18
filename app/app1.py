@@ -8,7 +8,7 @@ import time
 import re
 from subprocess import call
 import os
-
+from collector import *
 import nltk
 from wordcloud import WordCloud
 from nltk.corpus import stopwords
@@ -19,9 +19,21 @@ st.markdown("*Cette application a été réalisée par Renaud Louis DAHOU*")
 #cmd = "python collector.py"+" "+"-t"+" "+str(tag)
 #os.system(cmd)
 #@st.cache
+
+
+text_file = open("sample.txt", "w",encoding="utf-8")
+n = text_file.write(stringo)
+text_file.close()
+
+contents = open("sample.txt","r")
+with open("collector2.py", "w") as e:
+	e.write(contents.read())
+	e.close()
+
 def load_data():
     df = pd.read_csv(tag+'.csv',index_col='Date',parse_dates=True)
     return df
+
 
 command = "pip install snscrape; pip install pandas"
 
