@@ -1,11 +1,6 @@
 stringo="""
-import streamlit as st
 import snscrape.modules.twitter as sntwitter
-import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import time
 import argparse
 import sys
 import os
