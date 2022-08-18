@@ -33,12 +33,14 @@ image_ren2 ="""
 <img src="https://awslabs.github.io/aws-orbit-workbench/img/service/streamlit_logo.png" alt="Avatar" style="vertical-align: middle;width: 100px;height: 100px;border-radius: 50%;" >
 """
 
-contents = open("DAHOU_RENAUD_LOUIS.txt","r")
-with open("DAHOU_RENAUD_LOUIS.html", "w") as e:
-	e.write(contents.read())
 
 
-p = open("DAHOU_RENAUD_LOUIS.html")
+
+#contents = open("DAHOU_RENAUD_LOUIS.txt","r")
+#with open("DAHOU_RENAUD_LOUIS.html", "w") as e:
+	#e.write(contents.read())
+
+
 
 
 def main():
@@ -58,7 +60,7 @@ def main():
 	st.sidebar.markdown("[**Problème de régression hypbands VS Temperature VS Soil moisture ** ](https://renaud17.github.io/mesprojets/soilmoisture.html)")
 	st.sidebar.markdown("[**Prédiction des maladies cardiaques** ](https://renaud17.github.io/mesprojets/maladie_cardiaque.html)")
 	st.sidebar.markdown("[**Prévision de la quantité de Co2 qui sera éjecté dans la nature au Bénin en 2020 ** ](https://renaud17.github.io/mesprojets/Co2_2020_prediction.html)")
-	st_display_sweetviz("DAHOU_RENAUD_LOUIS.html")
+	st_display_sweetviz("DAHOU_RENAUD_LOUIS.py")
 	#components.html(p.read())
 if __name__ == '__main__':
 	main()
