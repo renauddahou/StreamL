@@ -21,7 +21,7 @@ footer {visibility: hidden;}
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-def st_display_sweetviz(report_html,width=1000,height=2500):
+def st_display_sweetviz(report_html,width=1000,height=2600):
 	report_file = codecs.open(report_html,'r',"utf-8")
 	page = report_file.read()
 	components.html(page,width=width,height=height,scrolling=True)
