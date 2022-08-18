@@ -35,7 +35,7 @@ def load_data():
     return df
 
 
-command = "pip install snscrape; pip install pandas"
+command = "pip install snscrape; pip install pandas; python -m nltk.downloader stopwords"
 
 # before Python 3.7:
 # ret = subprocess.run(command, stdout=subprocess.PIPE, shell=True)
