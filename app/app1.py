@@ -11,6 +11,8 @@ import os
 from collector import *
 import nltk
 from wordcloud import WordCloud
+import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 st.title("Application pour l'analyse en temps réel des tweets")
 st.markdown("*Cette application a été réalisée par Renaud Louis DAHOU*")
