@@ -57,6 +57,7 @@ def main():
 	st.sidebar.markdown(image_ren2, unsafe_allow_html = True)
 	st.sidebar.markdown("[** Application streamlit pour le suivi des indicateurs HSE ** ](https://renauddahou-streaml-hsekpimainapp3-2vpzvp.streamlitapp.com/)")
 	st.sidebar.markdown("[** Application streamlit pour l'exploration automatique des données ** ](https://renauddahou-streaml-p2app-y7zbjh.streamlitapp.com/)")
+	st.sidebar.markdown("[** Application pour l'analyse en temps réel des tweets ** ](https://renauddahou-streaml-appapp1-oinumg.streamlitapp.com/)")
 	st.sidebar.markdown(image_ren, unsafe_allow_html = True)
 	st.sidebar.markdown("[**Analyse exploratoire des données d' un funnel marketing B2B en utilisant Python** ](https://renaud17.github.io/mesprojets/EDA_funnel_marketing_B2B.html)")
 	st.sidebar.markdown("[** Segmentation de client e-commerce, prédiction du CLV** ](https://renaud17.github.io/mesprojets/EDA%20_segmentation_LTV_NPD_TS.html)")
