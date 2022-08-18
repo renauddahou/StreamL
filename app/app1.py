@@ -39,7 +39,7 @@ with st.sidebar.beta_expander("Analyse"):
     st.text("Demarrer ou rappeler une analyse\nen cours")
     if st.button('submit/start'):
         #subprocess.Popen("python collector.py"+" "+"-t"+" "+str(tag)+" "+"-c"+" "+str(country), shell=True)
-        subprocess.Popen(command+"; "+"python collector.py"+" "+"-t"+" "+str(tag), shell=True)
+        subprocess.Popen(command+"; "+"python collector2.py"+" "+"-t"+" "+str(tag), shell=True)
         time.sleep(10)
 
 
