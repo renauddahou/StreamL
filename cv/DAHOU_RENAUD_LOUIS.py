@@ -435,7 +435,7 @@ Je jouis d’une bonne expérience professionnelle suite à l’exécution de pl
                 </div>
                 <div class="row">
                   <div class="job-details col-xs-11">
-                    <div class="profession">Consultant informatique (Data Science & DEVOPS)</div>
+                    <div class="profession">Consultant Data Science & DEVOPS</div>
                     <div class="description">
                       Description
                       <div class="highlights"> </div>
