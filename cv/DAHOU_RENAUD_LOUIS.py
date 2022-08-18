@@ -1,4 +1,5 @@
 stringo="""
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -441,6 +442,7 @@ Je jouis d’une bonne expérience professionnelle suite à l’exécution de pl
                       <div class="highlights"> </div>
                       <ul class="list-group">
                         <li class="list-group-item">En tant que Consultant Data Science & DEVOPS , mes tâches sont les suivantes:</li>
+                        <li class="list-group-item">• Explorer les données et développer des modèles de machine learning et deep learning</li>
                         <li class="list-group-item">• Réaliser les déploiements et les configurations des infrastructures technologiques.</li>
                         <li class="list-group-item">• Provisionnement des serveurs sur le cloud AWS et AZure.</li>
                         <li class="list-group-item">• Deploiement des applications sur le cloud.</li>
