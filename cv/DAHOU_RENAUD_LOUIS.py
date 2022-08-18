@@ -1,4 +1,3 @@
-stringo="""
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -435,26 +434,19 @@ Je jouis d’une bonne expérience professionnelle suite à l’exécution de pl
                 </div>
                 <div class="row">
                   <div class="job-details col-xs-11">
-                    <div class="profession">Consultant informatique</div>
+                    <div class="profession">Consultant informatique (Data Science & DEVOPS)</div>
                     <div class="description">
                       Description
                       <div class="highlights"> </div>
                       <ul class="list-group">
-                        <li class="list-group-item">En tant que Consultant Informatique , mes tâches sont les suivantes:</li>
-                        <li class="list-group-item">• Participer à la définition de la politique globale de l’entreprise KIKUN DIGITAL et de ses clients, à partir de la stratégie de l’entreprise</li>
-                        <li class="list-group-item">• Prendre en charge tout ou partie des projets de développement technologiques</li>
-                        <li class="list-group-item">• Diriger et accompagner l’équipe commerciale et les clients KIKUN DIGITAL</li>
-                        <li class="list-group-item">• Promouvoir l’image et la notoriété de l’entreprise afin d’assurer le chiffre d’affaire auprès de nos clients</li>
-                        <li class="list-group-item">• Participer à la négociation sur certains contrats stratégiques</li>
-                        <li class="list-group-item">• Être attentif aux évolutions du marché et aux offres de la concurrence afin d’adapter en permanence les offres de l’entreprise</li>
-                        <li class="list-group-item">• Reporter au pôle consulting</li>
-                        <li class="list-group-item">• Animer des réunions d’équipe et développer des solutions selon les demandes de la hiérarchie</li>
-                        <li class="list-group-item">• Tester et participer à des ateliers de développement de logiciels</li>
-                        <li class="list-group-item">• Accompagner la croissance de l’entreprise (assistance technique, assistance lors des entretiens technique, assurer les intégrations logicielles pour nos clients et partenaires)</li>
-                        <li class="list-group-item">• Appliquer la culture de l’entreprise KIKUN DIGITAL et ses processus internes notamment le règlement intérieur, les processus des clients et partenaires si besoin</li>
-                        <li class="list-group-item">• Intervenir dans les besoins internes des différents services de l’entreprise (Marketing, Solutions, Formation, Consulting et Ressources Humaines)</li>
-                        <li class="list-group-item">• Participer et animer les formations en technologie</li>
+                        <li class="list-group-item">En tant que Consultant Data Science & DEVOPS , mes tâches sont les suivantes:</li>
                         <li class="list-group-item">• Réaliser les déploiements et les configurations des infrastructures technologiques.</li>
+                        <li class="list-group-item">• Provisionnement des serveurs sur le cloud AWS et AZure.</li>
+                        <li class="list-group-item">• Deploiement des applications sur le cloud.</li>
+                        <li class="list-group-item">• Developpement des APIs.</li>
+                        <li class="list-group-item">• Élaboration des documents d'installation (DIN) </li>
+                        <li class="list-group-item">• Reporter au pôle consulting</li>
+                        <li class="list-group-item">• Tester et participer à des ateliers de développement de logiciels</li>
                       </ul>
                     </div>
                   </div>
@@ -688,6 +680,15 @@ prédiction du CLV</i></a>
               <div class="title pull-right">Business Intelligence / SQL Senior Premier Field Engineer</div>
               <div class="description pull-right"><a href="https://www.linkedin.com/in/yanick-mezui-23a7271/" target="_blank">yanick-mezui-23a7271</a></div>
             </div>
+
+            <br> </br>
+            <br> </br>
+            <div class="box">
+            <h2><i class= "fas fa-code-branch ico"></i> Portfolio</h2>
+            
+            <ul class="list-group">
+              <a href="https://renauddahou-streaml-cvapp-asrxsl.streamlitapp.com/" target= "_blank"><i class="fas fa-globe ico"> Découvrer mes autres projets via cette URL </i></a>
+            </ul>
             
           </div>
           </div>
@@ -697,4 +698,3 @@ prédiction du CLV</i></a>
 
   </body>
 </html>
-"""
