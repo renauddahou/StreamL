@@ -1,3 +1,4 @@
+stringo="""
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -698,3 +699,4 @@ prédiction du CLV</i></a>
 
   </body>
 </html>
+"""
