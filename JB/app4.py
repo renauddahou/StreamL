@@ -15,7 +15,7 @@ import os
 import io
 import nltk
 #nltk.download('punkt')
-#nltk.download('stopwords')
+nltk.download('stopwords')
 import docx2txt
 from docx import Document
 from pdfminer.converter import TextConverter
