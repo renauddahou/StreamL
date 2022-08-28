@@ -1,5 +1,4 @@
 stringo="""
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -620,12 +619,15 @@ prédiction du CLV</i></a>
                 <span class= "skill badge">GitHub</span>
                 <span class= "skill badge">Bitbucket</span>
                 <span class= "skill badge">Docker</span>
-                <span class= "skill badge">SQL</span>
+                <span class= "skill badge">Ansible</span>
+                <span class= "skill badge">Terraform</span>
+                <span class= "skill badge">Kubernetes</span>
                 <span class= "skill badge">Sklearn</span>
                 <span class= "skill badge">Keras</span>
                 <span class= "skill badge">Tensorflow</span>
                 <span class= "skill badge">Streamlit</span>
                 <span class= "skill badge">Flask</span>
+                <span class= "skill badge">API REST</span>
                 <span class= "skill badge">AWS</span>
                 <span class= "skill badge">Azure</span>
                 <span class= "skill badge">Machine learning</span>
